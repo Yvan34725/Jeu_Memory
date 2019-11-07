@@ -1,0 +1,192 @@
+/*!
+ * File : styles.css 
+ * Auteur : BY - BAEZA Yvan
+ * Copyright : 2019
+ * Version : 2019-11-06
+ */
+ 
+ @charset 'utf-8';
+
+/// Eclairci une couleur en fonction d'un pourcentage
+/// @access public
+/// @param {Color} $color - couleur à éclaicir
+/// @param {Number} $percentage - poucentage
+/// @return {Color}
+@function by_eclarci($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+/// Fonce une couleur en fonction d'un pourcentage
+/// @access public
+/// @param {Color} $color - color à foncer
+/// @param {Number} $percentage - pourcentage
+/// @return {Color}
+@function by_fonce($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+
+// ----- Définition des Variables par défaut
+$color-default : black;
+$color-misenvaleur : by_fonce(rgb(153, 0, 255),20);
+$color-icone  : rgb(80, 133, 231);
+
+$font-family-titre : 'Lobster';
+$font-family-corp : 'Lato';
+$font-family-icone : 'FontAwesome';
+
+$repimages : '../images/';
+
+
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  padding: 10px;
+}
+
+p {
+  font-family: $font-family-corp;
+  margin: 20px;
+}
+
+.fa {
+  color: $color-icone;
+  margin: 0 2px;
+}
+
+h1, h2, h3, h4,
+h5 {
+  font-family: $font-family-titre;
+}
+
+h1 {
+  color: $color-misenvaleur;
+  font-weight: 400;
+}
+
+h2 {
+  color:$color-icone;
+}
+
+// Effet sur les liens, les input de type submmit, la div 'Fermer' de la msgbox 
+a, input[type="submit"], div#by-msgbox-close {
+  padding : 0 10px 3px 10px;
+  display:inline-block;
+  margin: 5px;
+  text-decoration: none;
+  color: $color-misenvaleur;
+  border-width: 1px;
+  border-radius: 0;
+  border-style: solid;
+  border-color: $color-misenvaleur;
+
+  transition-property: color, background-color, border-radius;
+  transition-duration: 0.1s;
+  transition-timing-function: ease-in-out;
+
+  &:not([disabled]):hover {
+    text-decoration: none;
+    border-radius: 5px;
+    color : by_eclarci($color-misenvaleur,90);
+    background-color: $color-misenvaleur ;
+    box-shadow: 0 5px 10px -4px grey;
+  }
+}
+  
+// Classe permettant de ne pas afficher un élément
+.by_nodisp {
+  display: none;
+}
+
+// Plateau de Jeu
+.by_plateau { 
+  width: 700px;
+  margin: 0 auto 10px;
+  
+  // Blocage des événements souris
+  &.by_noevent  {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// Les Cartes
+.by_plateau div[class^="col-"] {
+  margin:1px;
+  border-style:solid;
+  border-width:4px;
+  height:100px;
+  min-width: 100px;
+  background-image:url($repimages+'/jeu_memory_cards.png');
+  background-repeat: no-repeat;
+  background-size: 100px 1800px;
+  background-position: center 100px;
+  background-color: rgb(177, 177, 177);
+  border-radius: 10px;
+  border-color:$color-icone;
+  cursor: pointer;
+
+  &.by_retournee  {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+}
+
+// La progress bar
+div[id^="by-plateau-content"] {
+  & div.progress-bar {
+    margin-top:5px;
+    height: 20px;
+  }
+}
+
+div[id^="by-plateau-progress"] {
+  background-color: by_eclarci($color-misenvaleur,90);
+  & p {
+    line-height: 20px;
+  }
+}
+
+// La modale MsgBox
+div[id="by-msgbox-content"] {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left:0;
+  overflow: hidden;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.8);
+
+  & div#by-msgbox {
+    width: 500px;
+    height: 250px;
+    margin:100px auto;
+    padding: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: white;
+    background-color: white;
+    text-align: center;
+    
+    & div#by-msgbox-close {
+      position: relative;
+      left:200px;
+      cursor: pointer;
+    }
+
+    & form {
+      margin:30px;
+    }
+  }
+}

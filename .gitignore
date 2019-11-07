@@ -1,0 +1,18 @@
+
+### vscode ###
+/.vscode/
+
+### gulp/modules ###
+/node_modules/
+
+### divers ###
+/logs/
+/outs/
+/uploads/
+/sqlite/memory.db
+package-lock.json
+/assets/css/
+/assets/fonts/
+/assets/images/
+/assets/js/
+/src/css/
