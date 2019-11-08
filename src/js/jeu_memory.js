@@ -45,7 +45,12 @@ tab_pattern['nonvide']         = ".{1,}";
 tab_pattern['nom']             = "^[a-zA-Z0-9\-\_\ ]{3,50}$";   
 
 
-
+// ------ Polyfill function Date.now
+if (!Date.now) {
+    Date.now = function now() {
+      return new Date().getTime();
+    };
+}
 // ------ Polyfill function Math.trunc
 Math.trunc = Math.trunc || function(_x) {
     if (isNaN(_x)) {
@@ -211,7 +216,7 @@ function by_memoryCreePlateau() {
  * @return aucun
  */
 function by_retourneCarte(_event, _elem) {
-
+    
     // Annule le comportement normal de propagation de l'événement
     _event.preventDefault();
     _event.returnValue = false;
@@ -255,7 +260,8 @@ function by_retourneCarte(_event, _elem) {
                 elemInputDureems.setAttribute("value",tempsjeu);
                 // Mise en place du timestamp de la partie dans l'input 'hidden' pour le submit (pour éviter les doublons)
                 let elemInputTimeUniq = document.getElementById('by-form-timeuniq');
-                elemInputTimeUniq.setAttribute("value",Date.now());
+                // Réduction du TimeStamp pour pallier aux diffents formats suivant les environnements (Integer, LongInt, Num)
+                elemInputTimeUniq.setAttribute("value",(Date.now() - 1573192746634));
                  // Le jeu est terminé, c'est 'GAGNE'
                 by_msgBox(undefined, OUVRE, GAGNE);
             }
