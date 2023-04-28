@@ -14,7 +14,7 @@ Environnement nécessaire pour lancer ce projet...
 
 _Sur Windows_
 - Node.JS (v11.12.0), inclu Npm (v6.7.0)
-- Git (v2.23.0.windows.1)
+- Git (v2.23.0.windows)
 - Serveur WEB avec ses extensions pour PHP (v7.3)
 - Extension SQLite3 activée sur PHP
 - Un éditeur de texte Visual Studio Code {VCS} (v1.39.2) avec ses extensions pour développer des applications WEB (HTML, PHP, Javascript, CSS, SASS...)
