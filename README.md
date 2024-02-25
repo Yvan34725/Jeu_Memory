@@ -76,7 +76,7 @@ _Sur Windows_
 
 ## Auteurs
 
-* **Yvan BAEZA** _alias_ [Yvan34725]
+* **Yvan** _alias_ [Yvan34725]
 
 ## License
 
